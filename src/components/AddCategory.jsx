@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const AddCategory = ({ setCategories }) => {
+export const AddCategory = ({ onNewCategory }) => {
 
     const [inputValue, setInputValue] = useState('');
 
@@ -12,8 +12,9 @@ export const AddCategory = ({ setCategories }) => {
         event.preventDefault(); // Ayuda a no hacer refresh del navegador web
         if( inputValue.trim().length <= 1) return; // Validación
 
-        setCategories( categories => [ inputValue, ...categories ]);
+        // setCategories( categories => [ inputValue, ...categories ]);
         setInputValue(''); // Limpia el campo de texto
+        onNewCategory(inputValue.trim());
     }
 
     return (
