@@ -7,6 +7,7 @@ export const GifExpertApp = () => {
 
     const onAddCategory = ( newCategory ) => {
         console.log(newCategory);
+        if ( categories.includes(newCategory)) return;
         // categories.push(newCategory); así es como no se debe hacer
         setCategories([ newCategory, ...categories ]);
     }
