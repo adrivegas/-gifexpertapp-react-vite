@@ -1,36 +1,30 @@
 import { useState } from 'react';
 import { AddCategory } from './components/AddCategory';
+import { GifGrid } from './components/GifGrid';
 
 export const GifExpertApp = () => {
 
-    const [categories, setCategories] = useState([ 'One Punch', 'Dragon Ball']);
+    const [categories, setCategories] = useState(['One Punch', 'Dragon Ball']);
 
-    const onAddCategory = ( newCategory ) => {
+    const onAddCategory = (newCategory) => {
         console.log(newCategory);
-        if ( categories.includes(newCategory)) return;
-        // categories.push(newCategory); así es como no se debe hacer
-        setCategories([ newCategory, ...categories ]);
+        if (categories.includes(newCategory)) return;
+        setCategories([newCategory, ...categories]);
     }
 
-  return (
-    <>
-        {/* titulo */}
-        <h1>GifExpertApp</h1>
+    return (
+        <>
+            <h1>GifExpertApp</h1>
 
-        {/* input */}
-        <AddCategory 
-            // setCategories= {setCategories}
-            onNewCategory= {(value) => onAddCategory(value)}
-        />
+            <AddCategory
+                onNewCategory={(value) => onAddCategory(value)}
+            />
 
-        {/* Listado de gif */}
-        <ol>
             {
-                categories.map( category => {
-                    return <li key= { category }>{category}</li>
-                })
+                categories.map((category) => (
+                    <GifGrid key={category} category={category} />
+                ))
             }
-        </ol>
-    </>
-  )
+        </>
+    )
 }
