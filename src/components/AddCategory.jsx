@@ -1,16 +1,19 @@
 import { useState } from 'react';
 
-export const AddCategory = () => {
+export const AddCategory = ({ setCategories }) => {
 
-    const [inputValue, setInputValue] = useState('One Punch');
+    const [inputValue, setInputValue] = useState('');
 
     const onInputChange = ({target}) => {
         setInputValue(target.value);
     }
 
     const onSubmit = (event) => {
-        event.preventDefault();
-        console.log(inputValue);
+        event.preventDefault(); // Ayuda a no hacer refresh del navegador web
+        if( inputValue.trim().length <= 1) return; // Validación
+
+        setCategories( categories => [ inputValue, ...categories ]);
+        setInputValue(''); // Limpia el campo de texto
     }
 
     return (
